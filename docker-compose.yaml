@@ -23,8 +23,7 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
   phpmyadmin:
-    build:
-      dockerfile: ./.docker/phpmyadmin/Dockerfile
+    image: phpmyadmin
     ports:
       - 8000:80
     environment:
@@ -32,6 +31,8 @@ services:
       - PMA_HOST=mariadb
     depends_on:
       - mariadb
+    volumes:
+     - ./.docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
 volumes:
   dbdata:
 
